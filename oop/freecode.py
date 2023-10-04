@@ -1,4 +1,6 @@
-class Book:
+from abc import ABC, abstractmethod
+
+class Book(ABC):
     def __init__(self,title,quantity,author,price,discount=None):
         self.title = title
         self.quantity = quantity
@@ -28,6 +30,7 @@ class Book:
     def polymorphism_testing(self):
         qty = self.quantity % 2
         return "Even" if qty == 0 else "Odd"
+    @abstractmethod
     def __repr__(self):
         return f"Book({self.title}, {self.quantity}, {self.author}, Book price :{self.price})"
 
@@ -35,12 +38,13 @@ class Novel(Book):
     def __init__(self, title, quantity, author, price, discount, pages):
         super().__init__(title, quantity, author, price, discount)
         self.pages = pages
-
+    def __repr__(self):
+        return f"Book({self.title}, {self.quantity}, {self.author}, Book price :{self.price})"
+    
 class Academic(Book):
     def __init__(self, title, quantity, author, price, discount, pages):
         super().__init__(title, quantity, author, price, discount)
-        self.pages = pages
-        
+        self.pages = pages 
 # Polymorphism - start
     def __repr__(self):
         return f"Academic({self.title}, {self.quantity}, {self.author}, Book pricing :{self.price})"
@@ -48,9 +52,9 @@ class Academic(Book):
     def polymorphism_testing(self):
         return "Academic"
     
-book1 = Book("Harry Potter", 10, "JK Rowling", 100)
-book2 = Book("Lord of the Rings", 20, "Tolkien", 200)
-book3 = Book("The Hobbit", 30, "Tolkien", 300)
+# book1 = Book("Harry Potter", 10, "JK Rowling", 100)
+# book2 = Book("Lord of the Rings", 20, "Tolkien", 200)
+# book3 = Book("The Hobbit", 30, "Tolkien", 300)
 
 # print(book1.price)
 # print(book1.get_price())
