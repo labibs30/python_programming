@@ -24,6 +24,10 @@ class Book:
         total_price = self.price * self.quantity
         return total_price
     # Encapsulation - end
+    
+    def polymorphism_testing(self):
+        qty = self.quantity % 2
+        return "Even" if qty == 0 else "Odd"
     def __repr__(self):
         return f"Book({self.title}, {self.quantity}, {self.author}, Book price :{self.price})"
 
@@ -37,7 +41,13 @@ class Academic(Book):
         super().__init__(title, quantity, author, price, discount)
         self.pages = pages
         
-        
+# Polymorphism - start
+    def __repr__(self):
+        return f"Academic({self.title}, {self.quantity}, {self.author}, Book pricing :{self.price})"
+    
+    def polymorphism_testing(self):
+        return "Academic"
+    
 book1 = Book("Harry Potter", 10, "JK Rowling", 100)
 book2 = Book("Lord of the Rings", 20, "Tolkien", 200)
 book3 = Book("The Hobbit", 30, "Tolkien", 300)
@@ -65,4 +75,9 @@ print(bulk_books.get_total_price())
 novel1 = Novel('Two States', 20, 'Chetan Bhagat', 200, 0.2 ,187)
 # novel1.set_discount(0.20)
 print(novel1.get_total_price())
-print(novel1)
+print(novel1.polymorphism_testing())
+
+academic1 = Academic('Maths', 20, 'R.D Sharma', 200, 0.2 ,187)
+
+print(academic1.get_total_price())
+print(academic1.polymorphism_testing())
